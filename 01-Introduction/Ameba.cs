@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Numerics;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -10,7 +11,19 @@ public class Ameba
 {
 	public int simulate(int[] X, int A)
 	{
-	    return default(int);
+		long size = A;
+		for (int i = 0; i < X.Length; i++)
+		{
+			if (size == X[i])
+			{
+				size *= 2;
+			}
+		}
+		if (size > int.MaxValue)
+		{
+			return int.MaxValue;
+		}
+		return (int)size;
 	}
 
 	#region Testing code

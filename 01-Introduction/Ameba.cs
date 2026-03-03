@@ -11,6 +11,15 @@ public class Ameba
 {
 	public int simulate(int[] X, int A)
 	{
+		// validate input
+		if (X == null) throw new ArgumentNullException(nameof(X));
+		if (X.Length < 1 || X.Length > 200) throw new ArgumentOutOfRangeException(nameof(X), "X must contain between 1 and 200 integers.");
+		foreach (var v in X)
+		{
+			if (v < 1 || v > 1000000000) throw new ArgumentOutOfRangeException(nameof(X), "Each element of X must be between 1 and 1,000,000,000.");
+		}
+		if (A < 1 || A > 1000000000) throw new ArgumentOutOfRangeException(nameof(A), "A must be between 1 and 1,000,000,000.");
+		
 		long size = A;
 		for (int i = 0; i < X.Length; i++)
 		{

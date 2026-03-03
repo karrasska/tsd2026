@@ -10,6 +10,15 @@ public class Alarms
 {
 	public int countAlarms(int[] volume, int S)
 	{
+		// validate input
+		if (volume == null) throw new ArgumentNullException(nameof(volume));
+		if (volume.Length < 1 || volume.Length > 50) throw new ArgumentOutOfRangeException(nameof(volume), "Length of volume must be between 1 and 50.");
+		foreach (int v in volume)
+		{
+			if (v < 1 || v > 100) throw new ArgumentOutOfRangeException(nameof(volume), "Each element of volume must be between 1 and 100.");
+		}
+		if (S < 1 || S > 10000) throw new ArgumentOutOfRangeException(nameof(S), "S must be between 1 and 10000.");
+
 		int count = 0;
 		int n = volume.Length;
 		int idx = 0;

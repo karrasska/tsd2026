@@ -31,10 +31,10 @@ class Program
         // Step 3: Print results
         GoldResultPrinter.PrintSingleValue(Math.Round(avgPrice, 2), "Average Gold Price Last Half Year");
 
-		#region Task2a
-		// Task 2a
+		#region Task 1.2a
+		// Task 1.2a
 		// Method: TOP 3 highest i TOP 3 lowest 
-		Console.WriteLine("\nTask2a");
+		Console.WriteLine("\nTask 1.2a");
 		var top3HighestList = goldPrices
 			.Where(g => g.Date >= startDate && g.Date <= endDate)
 			.OrderByDescending(g => g.Price)
@@ -71,10 +71,10 @@ class Program
 
 		#endregion
 
-		#region Task2b
-		// Data for task2b
+		#region Task 1.2b
+		// Data for task 1.2b
 		// 2020-now
-		Console.WriteLine("\nTask2b");
+		Console.WriteLine("\nTask 1.2b");
 		Console.WriteLine("Retrieving data since 2020.");
 		DateTime start2b = new DateTime(2020, 1, 1);
 		DateTime end2b = DateTime.Now;
@@ -130,8 +130,8 @@ class Program
 		}
 		#endregion
 
-		#region Task2c
-		Console.WriteLine("\nTask2c");
+		#region Task 1.2c
+		Console.WriteLine("\nTask 1.2c");
 		Console.WriteLine("\nRetrieving data from 2019-2022");
 
 		DateTime start2c = new DateTime(2019, 1, 1);
@@ -169,8 +169,8 @@ class Program
 		GoldResultPrinter.PrintPrices(secondTenDates, "3 dates that opens the second ten of the prices ranking");
 		#endregion
 
-		#region Task2d
-		Console.WriteLine("\nTask2d");
+		#region Task 1.2d
+		Console.WriteLine("\nTask 1.2d");
 		Console.WriteLine("\nRetrieving data from 2020-2024");
 
 		DateTime start2d = new DateTime(2020, 1, 1);
@@ -215,8 +215,8 @@ class Program
 
 		#endregion
 
-		#region Task2e
-		Console.WriteLine("\nTask2e");
+		#region Task 1.2e
+		Console.WriteLine("\nTask 1.2e");
 		// Use data from task2d
 		var chronologicallySortedPrices = prices2d.OrderBy(p => p.Date).ToList();
 
@@ -249,14 +249,14 @@ class Program
 		}
 		#endregion
 
-		#region Task3-test
-		Console.WriteLine("\nTask 3 - test");
+		#region Task 1.3-test
+		Console.WriteLine("\nTask 1.3 - test");
 		string xmlFilePath = "gold_prices2.xml";
 		GoldDataExporter.SavePricesToXml(prices2d, xmlFilePath);
 		#endregion
 
-		#region Task4-test
-		Console.WriteLine("\nTask 4 - test");
+		#region Task 1.4-test
+		Console.WriteLine("\nTask 1.4 - test");
 		var readPrices = GoldDataExporter.ReadPricesFromXml(xmlFilePath);
 		if (readPrices != null && readPrices.Count > 0)
 		{
@@ -271,6 +271,34 @@ class Program
 		else
 		{
 			Console.WriteLine("Error");
+		}
+		#endregion
+
+		#region Task 2.1
+		Console.WriteLine("\nTask 2.1.");
+		// Leap year method - lambda expression
+		Func<int, bool> isLeap = year => (year % 4 == 0) && (year % 100 != 0 || year % 400 == 0);
+		int year = 2021;
+		Console.WriteLine($"Is {year} a leap year? {isLeap(year)}");
+		#endregion
+
+		#region Task 2.2-test
+		Console.WriteLine("\nTask 2.2-test");
+
+		RandomizedList<string> randomList = new RandomizedList<string>();
+		Console.WriteLine($"Is empty at start? {randomList.IsEmpty()}");
+
+		randomList.Add("Element A");
+		randomList.Add("Element B");
+		randomList.Add("Element C");
+		randomList.Add("Element D");
+
+		Console.WriteLine($"Is empty after adding? {randomList.IsEmpty()}");
+
+		Console.WriteLine("Randomly fetching an element:");
+		for (int i = 0; i < 4; i++)
+		{
+			Console.WriteLine($"- Attempt {i + 1}: {randomList.Get(3)}"); // max index
 		}
 		#endregion
 

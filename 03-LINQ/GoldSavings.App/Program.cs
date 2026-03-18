@@ -1,13 +1,18 @@
 ﻿using GoldSavings.App.Model;
 using GoldSavings.App.Client;
 using GoldSavings.App.Services;
+using SQLitePCL;
+
 namespace GoldSavings.App;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello, Gold Investor!");
+		// Init SQLite native provider — must run before any Microsoft.Data.Sqlite connection
+		SQLitePCL.Batteries_V2.Init();
+
+		Console.WriteLine("Hello, Gold Investor!");
 
         // Step 1: Get gold prices
         GoldDataService dataService = new GoldDataService();
@@ -300,6 +305,13 @@ class Program
 		{
 			Console.WriteLine($"- Attempt {i + 1}: {randomList.Get(3)}"); // max index
 		}
+		#endregion
+
+		#region Task 3.2-test
+		Console.WriteLine("\nTask 3.2 - test");
+		var (topHighSql, topLowSql) = SqlQueryService.QueryTop3HighestAndLowest(goldPrices, startDate, endDate);
+		GoldResultPrinter.PrintPrices(topHighSql, "Top 3 highest (SQL)");
+		GoldResultPrinter.PrintPrices(topLowSql, "Top 3 lowest (SQL)");
 		#endregion
 
 		Console.WriteLine("\nGold Analyis Queries with LINQ Completed.");

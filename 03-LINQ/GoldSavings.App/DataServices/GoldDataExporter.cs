@@ -11,7 +11,7 @@ namespace GoldSavings.App.Services
 {
 	public static class GoldDataExporter
 	{
-		// Task 3
+		// Task 1.3
 		public static void SavePricesToXml(List<GoldPrice> prices, string filePath)
 		{
 			// Validation
@@ -55,7 +55,7 @@ namespace GoldSavings.App.Services
 			}
 		}
 
-		// Task 4
+		// Task 1.4
 		public static List<GoldPrice> ReadPricesFromXml(string filePath) => (List<GoldPrice>)new XmlSerializer(typeof(List<GoldPrice>)).Deserialize(new StreamReader(filePath));
 	}
 }
